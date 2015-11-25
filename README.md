@@ -27,7 +27,7 @@ UI Improvements
 Local testing with node http server (OSX)
 ----
 ```
-cd sw-showdown-troop-builder
+cd showdown-troop-builder
 brew install node
 npm install http-server -g
 http-server
