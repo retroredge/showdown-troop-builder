@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="img/favicon.ico">
+    <title>Showdown Troop Builder</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <!--<script src="https://code.jquery.com/jquery.js"></script>-->
+    <script src="js/shared/jquery-1.11.1.min.js"></script>
+    <script src="js/shared/bootstrap.min.js"></script>
+    <!--<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>-->
+    <script src="js/shared/angular.min.js"></script>
+
+    <script src="js/app.js"/></script>
+    <script src="js/controllers/mainController.js"/></script>
+    <script src="js/directives/diePicker.js"/></script>
+    <script src="js/edges.js"></script>
+    <script src="js/specialAbilities.js"></script>
+    <script src="js/armor.js"></script>
+    <script src="js/handWeapons.js"></script>
+    <script src="js/rangedWeapons.js"></script>
+    <script src="js/miscAbilities.js"></script>
+
+</head>
+
+<body ng-app="showdownTroopBuilder" ng-controller="mainController" role="document">
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Showdown Troop Builder</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href=#" data-toggle="modal" data-target="#aboutModal">About</a></li>
+                <li><a href=#" data-toggle="modal" data-target="#printModal">Print</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid" role="main">
+    <form role="form">
+        <div class="row">
+
+            <!-- Col 1 -->
+            <div class="col-md-5">
+                <div class="panel-group" id="accordion-left">
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Info</h3>
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label for="name">Name / Type:</label>
+                                        <input type="text" class="form-control" placeholder="name" ng-model="statBlock.name" id="name">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Wild Card:</label>
+                                        <input type="checkbox" value="false" ng-model="statBlock.wildCard" id="wc">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Str Bonus:</label>
+                                        <input type="number" class="form-control" placeholder="strength bonus" ng-model="statBlock.strengthBonus">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Pace:</label>
+                                        <input type="number" class="form-control" placeholder="pace" ng-model="statBlock.pace">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Size:</label>
+                                        <input type="number" class="form-control" placeholder="size" ng-model="statBlock.size">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Derived Stats</h3>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            Pace <span class="badge">{{ statBlock.paceTotal() }}</span>
+                                        </div>
+                                        <div class="col-md-2">
+                                            Parry <span class="badge">{{ statBlock.parry() }}</span>
+                                        </div>
+                                        <div class="col-md-4">
+                                            Toughness <span class="badge">{{ statBlock.toughnessTotal() }} ({{ statBlock.armor() }}) </span>
+                                        </div>
+                                <div class="col-md-3">
+                                    Cost <span class="badge">{{ statBlock.roundedCost() }} ({{ statBlock.cost() }}) </span>
+                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion-left" href="#collapseStats">Stats</a>
+                            </h3>
+                        </div>
+                        <div id="collapseStats" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                            <div class="form-group">
+                                <die-picker stat="statBlock.agility.value"
+                                            statname="statBlock.agility.name"></die-picker>
+                                <die-picker stat="statBlock.smarts.value"
+                                            statname="statBlock.smarts.name"></die-picker>
+                                <die-picker stat="statBlock.spirit.value"
+                                            statname="statBlock.spirit.name"></die-picker>
+                                <die-picker stat="statBlock.strength.value"
+                                            statname="statBlock.strength.name"></die-picker>
+                                <die-picker stat="statBlock.vigor.value"
+                                            statname="statBlock.vigor.name"></die-picker>
+                            </div>
+                        </div>
+                            </div>
+                    </div>
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion-left" href="#collapseSkills">Skills</a>
+                            </h3>
+                        </div>
+                        <div id="collapseSkills" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <die-picker ng-repeat="attribute in statBlock.attributes" stat="attribute.value"
+                                                statname="attribute.name"></die-picker>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Col 2 -->
+            <div class="col-md-7">
+                <div class="panel-group" id="accordion">
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseEdges">Edges /
+                                    Abilities</a>
+                            </h3>
+                        </div>
+                        <div id="collapseEdges" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <select multiple class="form-control" size="27" ng-model="statBlock.edges">
+                                        <option ng-repeat="edge in edges"
+                                                value="{{ edge }}" ng-bind="edge.name">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseAbilities">Special Abilities</a>
+                            </h3>
+                        </div>
+                        <div id="collapseAbilities" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <select multiple class="form-control" size="27" ng-model="statBlock.specialAbilities">
+                                        <option ng-repeat="ability in specialAbilities"
+                                                value="{{ ability }}" ng-bind="ability.name">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseAbilities2">Misc Abilities</a>
+                            </h3>
+                        </div>
+                        <div id="collapseAbilities2" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <select multiple class="form-control" size="27" ng-model="statBlock.miscAbilities">
+                                        <option ng-repeat="ability in miscAbilities"
+                                                value="{{ ability }}" ng-bind="ability.name">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseArmor">Armor</a>
+                            </h3>
+                        </div>
+                        <div id="collapseArmor" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <select multiple class="form-control" size="27" ng-model="statBlock.armors">
+                                        <option ng-repeat="armor in armors" value="{{ armor }}">{{ armor.name }} (armor: {{ armor.armor }})
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseHandWeapons">Hand Weapons</a>
+                            </h3>
+                        </div>
+                        <div id="collapseHandWeapons" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <select multiple class="form-control" size="27" ng-model="statBlock.handWeapons">
+                                        <option ng-repeat="handWeapon in handWeapons"
+                                                value="{{ handWeapon }}">{{ handWeapon.name }} (damage: {{ handWeapon.damage }})
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseRangedWeapons">Ranged
+                                    weapons</a>
+                            </h3>
+                        </div>
+                        <div id="collapseRangedWeapons" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <select multiple class="form-control" size="27" ng-model="statBlock.rangedWeapons">
+                                        <option ng-repeat="rangedWeapon in rangedWeapons"
+                                                value="{{ rangedWeapon }}">{{ rangedWeapon.name }} ({{ rangedWeapon.damage }})
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+
+<div class="panel-footer">
+    <div class="row">
+        <div class="col-md-2">
+            <img src="img/sw-fan-logo.png" class="img-thumbnail" width="100">
+        </div>
+        <div class="col-md-10">
+            This game references the Savage Worlds game system, available from Pinnacle Entertainment Group at www.peginc.com.
+            Savage Worlds and all associated logos and trademarks are copyrights of Pinnacle Entertainment Group. Used with permission.
+            Pinnacle makes no representation or warranty as to the quality, viability, or suitability for purpose of this product.
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+<!-- Print Modal -->
+<div class="modal fade" id="printModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Name: {{ statBlock.name }} {{ statBlock.wildCard ? '(WC)' : '' }}</h4>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-condense table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Agility</th>
+                        <th>Smarts</th>
+                        <th>Spirit</th>
+                        <th>Strength</th>
+                        <th>Vigor</th>
+                        <th>Pace</th>
+                        <th>Parry</th>
+                        <th>Toughness</th>
+                        <th>Cost</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>d{{ statBlock.agility.value }}</td>
+                        <td>d{{ statBlock.smarts.value }}</td>
+                        <td>d{{ statBlock.spirit.value }}</td>
+                        <td>d{{ statBlock.strength.value }} <span ng-show="statBlock.strengthBonus">+ {{ statBlock.strengthBonus }}</span></td>
+                        <td>d{{ statBlock.vigor.value }}</td>
+                        <td>{{ statBlock.paceTotal() }}</td>
+                        <td>{{ statBlock.parry() }}</td>
+                        <td>{{ statBlock.toughnessTotal() }} ({{ statBlock.armor() }})</td>
+                        <td>{{ statBlock.roundedCost() }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table table-condense">
+                    <tr>
+                        <td style="border-top:none;" width="25%">
+                            <table class="table table-condense table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Skills</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="attr in statBlock.attributes | filter:itemHasValue()">
+                                    <td>
+                                        {{ statBlock.getObjectFromJsonString(attr).name }}: d{{ statBlock.getObjectFromJsonString(attr).value }}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td style="border-top:none;" width="75%">
+                            <table class="table table-condense table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Edges / Special Abilities</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="edge in statBlock.edges">
+                                    <td>
+                                        {{ statBlock.getObjectFromJsonString(edge).name }}: {{ statBlock.getObjectFromJsonString(edge).desc }}
+                                    </td>
+                                </tr>
+                                <tr ng-repeat="special in statBlock.specialAbilities">
+                                    <td>
+                                        {{ statBlock.getObjectFromJsonString(special).name }}: {{ statBlock.getObjectFromJsonString(special).desc }}
+                                    </td>
+                                </tr>
+                                <tr ng-repeat="misc in statBlock.miscAbilities">
+                                    <td>
+                                        {{ statBlock.getObjectFromJsonString(misc).name }}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-top:none;" width="25%">
+                            <table class="table table-condense table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Armor</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="armor in statBlock.armors">
+                                    <td>
+                                        {{ statBlock.getObjectFromJsonString(armor).name }}
+                                        +{{ statBlock.getObjectFromJsonString(armor).armor }}A,
+                                        +{{ statBlock.getObjectFromJsonString(armor).parry }}P
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td style="border-top:none;" width="75%">
+                            <table class="table table-condense table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Weapon</th>
+                                    <th>Damage</th>
+                                    <th>Range</th>
+                                    <th>AP</th>
+                                    <th>Notes</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="handWeapon in statBlock.handWeapons">
+                                    <td>
+                                        {{ statBlock.getObjectFromJsonString(handWeapon).name }}
+                                    </td>
+                                    <td>
+                                        {{ statBlock.getObjectFromJsonString(handWeapon).damage }}
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <span ng-show="statBlock.getObjectFromJsonString(handWeapon).ap">
+                                            {{ statBlock.getObjectFromJsonString(handWeapon).ap }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span ng-show="statBlock.getObjectFromJsonString(handWeapon).reach">
+                                            Reach +{{ statBlock.getObjectFromJsonString(handWeapon).reach }}
+                                        </span>
+                                        <span ng-show="statBlock.getObjectFromJsonString(handWeapon).parry">
+                                            Parry {{ statBlock.getObjectFromJsonString(handWeapon).parry }}
+                                        </span>
+                                        <span ng-show="statBlock.getObjectFromJsonString(handWeapon).twoHanded">
+                                            Two Handed
+                                        </span>
+                                        {{ statBlock.getObjectFromJsonString(handWeapon).notes }}
+                                    </td>
+                                </tr>
+                                <tr ng-repeat="rangedWeapon in statBlock.rangedWeapons">
+                                    <td>
+                                        {{ statBlock.getObjectFromJsonString(rangedWeapon).name }}
+                                    </td>
+                                    <td>
+                                        {{ statBlock.getObjectFromJsonString(rangedWeapon).damage }}
+                                    </td>
+                                    <td>
+                                        {{ statBlock.getObjectFromJsonString(rangedWeapon).range }}
+                                    </td>
+                                    <td>
+                                        <span ng-show="statBlock.getObjectFromJsonString(rangedWeapon).ap">
+                                            {{ statBlock.getObjectFromJsonString(rangedWeapon).ap }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        R.o.F: {{ statBlock.getObjectFromJsonString(rangedWeapon).rof }}
+                                        <span ng-show="statBlock.getObjectFromJsonString(rangedWeapon).oneShot">
+                                            One Shot
+                                        </span>
+                                        <span ng-show="statBlock.getObjectFromJsonString(rangedWeapon).special">
+                                            {{ statBlock.getObjectFromJsonString(rangedWeapon).special }}
+                                        </span>
+                                    </td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="modal-footer">
+                <div class="pull-right hidden-print">
+                    <button class="btn btn-primary" onclick="window.print()">Print</button>
+                    <!--<button class="btn btn-primary" ng-click="$close()">Cancel</button>-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Showdown Troop Builder v0.1</h4>
+            </div>
+            <div class="modal-body">
+                <h4>About</h4>
+                <p>This is a Web application for the Savage Worlds <a href="https://www.peginc.com/freebies/Showdown/Showdown.pdf">
+                    Showdown</a> miniatures skirmish rules by <a href="http://www.peginc.com">Pinnacle Entertainment Group</a>.</p>
+                <p>The application is a 'troop builder' for designing and costing units to use in the game.
+                The application is based on the mechanics in the costing spreadsheet that accompanies
+                the Showdown rules but does not attempt to impose any of the game's rules.</p>
+                <h4>Future Enhancements</h4>
+                <p>
+                    <ul>
+                        <li>Print as a PDF</li>
+                        <li>Export / import data</li>
+                        <li>Checkboxes in lists instead of basic multi-select list</li>
+                        <li>Multi-tabbed UI </li>
+                    </ul>
+                </p>
+                <h4>Contact</h4>
+                Please raise any bugs, issues or suggestions for improvements via the project's GitHub page.
+                <h4>Known Issues</h4>
+                <p>
+                    <ul>
+                        <li>Print generates an extra blank page with the logo at the bottom</li>
+                    </ul>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right hidden-print">
+                    <!--<button class="btn btn-primary" ng-click="$close()">Cancel</button>-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<style>
+
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+
+        img * {
+            visibility: hidden;
+            display: none;
+        }
+
+        #printModal * {
+            visibility: visible;
+        }
+
+        .modal{
+            position: absolute;
+            left: 0;
+            top: 0;
+            margin: 0;
+            padding: 0;
+            min-height:550px;
+        }
+
+    }
+
+</style>
+
