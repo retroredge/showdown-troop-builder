@@ -47,7 +47,7 @@ var SPECIAL_ABILITIES = [
     {name: 'Swarm', cost: 10, desc: 'Parry +2; Because the swarm is composed of scores, hundreds, or thousands of creatures, cutting and piercing weapons do no real damage. Area-effect weapons work normally, and a figure can stomp to inflict his damage in Strength each round'},
     {name: 'Split', cost: 5, desc: 'The swarm can split into two smaller swarms (Small Burst Templates) but cannot rejoin. The Toughness of these smaller swarms is lowered by –2'},
     {name: 'Swarm Damage', cost: 10, desc: ''},
-    {name: 'Undead', cost: 20, desc: '+2 Toughness, +2 to recover from being Shaken, no additional damage from called shots, immune to disease and poison, Undead Wild Cards never suffer from wound penalties', affectedStat: 'toughness', affectValue: 1},
+    {name: 'Undead', cost: 20, desc: '+2 Toughness, +2 to recover from being Shaken, no additional damage from called shots, immune to disease and poison, Undead Wild Cards never suffer from wound penalties', affectedStat: 'toughness', affectValue: 2},
     {name: 'Wall Walker', cost:	3, desc: 'The figure can walk up walls at their normal Pace as if they were regular terrain'},
     {name: 'Tail Lash', cost: 10, desc: 'Large creatures with long tails can sweep all opponents in their rear facing in a 3" long by 6" wide rectangle. This is a standard Fighting attack, and damage is equal to the creature’s Strength –2'},
     {name: 'Waterspout', cost: 10, desc: 'Water spirits can project a torrent of rushing water. Creatures within the cone must make a Strength roll at –2 or be Shaken'},
