@@ -14,7 +14,7 @@ var HAND_WEAPONS = [
     {name: 'Warhammer',           damage: 'Str+d6',    ap: 1,  reach: 0, parry: -1, twoHanded: true,  cost: 5},
     {name: 'Flail',               damage: 'Str+d6',    ap: 0,  reach: 0, parry: 0,  twoHanded: true,  cost: 9,  notes: 'Ignores Shield Parry bonus'},
     {name: 'Maul',                damage: 'Str+d6',    ap: 2,  reach: 0, parry: -1, twoHanded: true,  cost: 7},
-    {name: 'Halbred',             damage: 'Str+d8',    ap: 0,  reach: 1, parry: 0,  twoHanded: true,  cost: 11},
+    {name: 'Halberd',             damage: 'Str+d8',    ap: 0,  reach: 1, parry: 0,  twoHanded: true,  cost: 11},
     {name: 'Mounted Lance',       damage: 'Str+d8',    ap: 2,  reach: 2, parry: 0,  twoHanded: true,  cost: 14, notes: 'AP 2 if charge >= 4”'},
     {name: 'Pike',                damage: 'Str+d8',    ap: 0,  reach: 2, parry: 0,  twoHanded: true,  cost: 13},
     {name: 'Staff',               damage: 'Str+d4',    ap: 0,  reach: 1, parry: 1,  twoHanded: true,  cost: 8},
