@@ -8,6 +8,8 @@ in the spreadsheet that accompanies the Showdown rules.
  
 The application uses [https://angularjs.org/](AngularJS) and [http://getbootstrap.com/](Bootstrap).   
 
+GitHub Pages deployment [here](http://retroredge.github.io/showdown-troop-builder)
+
 Developer Notes
 ====
 

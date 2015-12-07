@@ -80,23 +80,21 @@ app.controller('mainController', function($scope) {
         },
 
         cost: function() {
-            return (
-                    (this.agility.value - 4) +
-                    (this.smarts.value - 4) +
-                    (this.spirit.value - 2) +
-                    (this.strength.value - 2) +
-                    (this.strengthBonus) +
-                    (((this.vigor.value / 2) - 1) * 3) +
-                    (this.pace - 6) +
-                    this.costOfAttributes() +
-                    this.costOf(this.edges) +
-                    this.costOf(this.specialAbilities) +
-                    this.costOf(this.miscAbilities) +
-                    (this.costOf(this.armors) * 5) +
-                    this.costOfWeapons(this.handWeapons.concat(this.rangedWeapons)) +
-                    (this.size * 10)
-                   )
-                   * (this.wildCard ? 2:1);
+            return (((this.agility.value - 4) +
+                     (this.smarts.value - 4) +
+                     (this.spirit.value - 2) +
+                     (this.strength.value - 2) +
+                     (this.strengthBonus) +
+                     (((this.vigor.value / 2) - 1) * 3) +
+                     (this.pace - 6) +
+                     this.costOfAttributes() +
+                     this.costOf(this.edges) +
+                     this.costOf(this.specialAbilities) +
+                     this.costOf(this.miscAbilities) +
+                     (this.costOf(this.armors) * 5) +
+                     this.costOfWeapons(this.handWeapons.concat(this.rangedWeapons)) +
+                     (this.size * 10))
+                    * (this.wildCard ? 2:1)).toFixed(2);
         },
 
         costOf: function(items) {
