@@ -11,10 +11,13 @@ app.controller('mainController', function($scope) {
 
         attributes: [
             {name: 'Arcane', value: ''},
+            {name: 'Boating', value: ''},
+            {name: 'Climbing', value: ''},
             {name: 'Driving', value: ''},
             {name: 'Fighting', value: ''},
             {name: 'Intimidation', value: ''},
             {name: 'Piloting', value: ''},
+            {name: 'Notice', value: ''},
             {name: 'Riding', value: ''},
             {name: 'Shooting', value: ''},
             {name: 'Swimming', value: ''},
@@ -39,7 +42,7 @@ app.controller('mainController', function($scope) {
                 parryTotal = parryTotal + item.parry;
             });
 
-            var fightingAttributeIndex = 2;
+            var fightingAttributeIndex = 4;
             return (this.attributes[fightingAttributeIndex].value / 2) + 2 +
                     parryTotal +
                     this.abilityAdditions(this.edges, 'parry');
