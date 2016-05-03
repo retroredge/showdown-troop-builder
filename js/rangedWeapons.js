@@ -1,5 +1,4 @@
 var RANGED_WEAPONS = [
-
     {name: 'Axe, throwing',            range: '3/6/12',   damage: 'Str+6',  rof: 1, ap: 0, cost: 5},
     {name: 'Bow',                      range: '12/24/48', damage: '2d6',    rof: 1, ap: 0, cost: 5},
     {name: 'Crossbow',	               range: '12/24/48', damage: '2d6',    rof: 1, ap: 2, cost: 12, special: 'Snapfire'},

@@ -1,5 +1,4 @@
 var MISC_ABILITIES = [
-
     // Unlisted Skills
     {name: 'Skill d4', cost: 2},
     {name: 'Skill d6', cost: 3},

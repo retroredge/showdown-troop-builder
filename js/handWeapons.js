@@ -1,5 +1,4 @@
 var HAND_WEAPONS = [
-
     {name: 'Dagger / Knife',      damage: 'Str+d4',    ap: 0,  reach: 0, parry: '',   twoHanded: false, cost: 3},
     {name: 'Rapier',              damage: 'Str+d4',    ap: 0,  reach: 0, parry: '+1', twoHanded: false, cost: 6},
     {name: 'Short Sword',         damage: 'Str+d6',    ap: 0,  reach: 0, parry: '',   twoHanded: false, cost: 6},
@@ -26,9 +25,9 @@ var HAND_WEAPONS = [
     {name: 'Shield, Large',       damage: 'Str+3',     ap: 0,  reach: 0, parry: '+2',  twoHanded: false, cost: 8, notes: 'Armor +2 against ranged shots that hit'},
 
     {name: 'Bayonet',             damage: 'Str+d6',    ap: 1,  reach: 0, parry: '-1', twoHanded: true,  cost: 5,  notes : 'Fitted to rifle'},
-    {name: 'Chainsaw',            damage: 'Str+2d6+4', ap: 0,  reach: 0, parry: '',  twoHanded: false, cost: 22,  notes: '1 on the Fighting die hits wielder'},
-    {name: 'Molecular knife',     damage: 'Str+2d4+2', ap: 2,  reach: 0, parry: '',  twoHanded: false, cost: 13},
-    {name: 'Molecular sword',     damage: 'Str+2d8+2', ap: 4,  reach: 0, parry: '',  twoHanded: false, cost: 23},
-    {name: 'Laser sword',         damage: 'Str+2d6+8', ap: 12, reach: 0, parry: '',  twoHanded: false, cost: 54},
-    {name: 'Donga’s Tree Club',   damage: 'Str+d10',   ap: 0,  reach: 3, parry: '',  twoHanded: false, cost: 33}
+    {name: 'Chainsaw',            damage: 'Str+2d6+4', ap: 0,  reach: 0, parry: '',   twoHanded: false, cost: 22, notes: '1 on the Fighting die hits wielder'},
+    {name: 'Molecular knife',     damage: 'Str+2d4+2', ap: 2,  reach: 0, parry: '',   twoHanded: false, cost: 13},
+    {name: 'Molecular sword',     damage: 'Str+2d8+2', ap: 4,  reach: 0, parry: '',   twoHanded: false, cost: 23},
+    {name: 'Laser sword',         damage: 'Str+2d6+8', ap: 12, reach: 0, parry: '',   twoHanded: false, cost: 54},
+    {name: 'Donga’s Tree Club',   damage: 'Str+d10',   ap: 0,  reach: 3, parry: '',   twoHanded: false, cost: 33}
 ];

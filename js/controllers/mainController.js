@@ -35,16 +35,8 @@ app.controller('mainController', function($scope) {
         },
 
         parry: function() {
-            var parryTotal = 0;
-
-            this.armors.forEach(function(itemString) {
-                var item = angular.fromJson(itemString);
-                parryTotal = parryTotal + item.parry;
-            });
-
             var fightingAttributeIndex = 4;
             return (this.attributes[fightingAttributeIndex].value / 2) + 2 +
-                    parryTotal +
                     this.abilityAdditions(this.edges, 'parry');
         },
 
