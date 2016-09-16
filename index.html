@@ -195,6 +195,7 @@
                                 <div class="form-group">
                                     <select multiple class="form-control" size="27" ng-model="statBlock.edges">
                                         <option ng-repeat="edge in edges"
+                                                title="{{ edge.desc }}"
                                                 value="{{ edge }}" ng-bind="edge.name">
                                         </option>
                                     </select>
@@ -213,6 +214,7 @@
                                 <div class="form-group">
                                     <select multiple class="form-control" size="27" ng-model="statBlock.specialAbilities">
                                         <option ng-repeat="ability in specialAbilities"
+                                                title="{{ ability.desc }}"
                                                 value="{{ ability }}" ng-bind="ability.name">
                                         </option>
                                     </select>
