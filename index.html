@@ -169,8 +169,8 @@
                         <div id="collapseSkills" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <div class="form-group">
-                                    <die-picker ng-repeat="attribute in statBlock.attributes" stat="attribute.value"
-                                                statname="attribute.name"></die-picker>
+                                    <die-picker ng-repeat="skill in statBlock.skills" stat="skill.value"
+                                                statname="skill.name"></die-picker>
                                 </div>
                             </div>
                         </div>
@@ -372,9 +372,9 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="attr in statBlock.attributes | filter:itemHasValue()">
+                                <tr ng-repeat="skill in statBlock.skills | filter:itemHasValue()">
                                     <td>
-                                        {{ statBlock.getObjectFromJsonString(attr).name }}: d{{ statBlock.getObjectFromJsonString(attr).value }}
+                                        {{ statBlock.getObjectFromJsonString(skill).name }}: d{{ statBlock.getObjectFromJsonString(skill).value }}
                                     </td>
                                 </tr>
                                 </tbody>
