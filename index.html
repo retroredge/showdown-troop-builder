@@ -53,6 +53,14 @@
                 <li class="active"><a href="#">Home</a></li>
                 <li><a href=#" data-toggle="modal" data-target="#aboutModal">About</a></li>
                 <li><a href=#" data-toggle="modal" data-target="#printModal">Print</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-click="generateExport()">Unit<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a ng-href="{{exportUri}}" target="_blank" ng-attr-download="{{ statBlock.datakeyName()+'.json' }}">Export to JSON</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#" ng-click="persist()" title="in browser localStorage">Save</a></li>
+                    </ul>
+                 </li>
             </ul>
         </div>
     </div>

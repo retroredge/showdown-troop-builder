@@ -147,6 +147,12 @@ app.controller('mainController', function($scope) {
         getObjectFromJsonString: function(itemString) {
             var item = angular.fromJson(itemString);
             return item;
+        },
+
+
+        datakeyName: function() {
+            //Might be used in multiple places. At least localStorage keys and download filename hints.
+            return 'ShowdownTroopBuilder.Unit.' + (this.name ? this.name.replace(/\W/g,'') : 'Unnamed');
         }
 
     };
@@ -156,6 +162,8 @@ app.controller('mainController', function($scope) {
 		/* Apparently not available in currently utilzed version of Boostrap:
 		 ,'conifer','cd','alert','king','queen','pawn','bishop','knight','apple','hourglass','grain','triangle-top' */
     ];
+
+    $scope.exportUri = '';
 
     // Reference Data
     $scope.edges = EDGES;
@@ -176,5 +184,13 @@ app.controller('mainController', function($scope) {
       //Just cycle to the next icon. The icons are the "built-in" Bootstrap icons, selected for proper flavor.
         this.statBlock.wildCardIconIndex = (this.statBlock.wildCardIconIndex + 1) % this.wcGlyphiconSet.length;
     };
+
+    $scope.persist = function () {
+		localStorage[$scope.statBlock.datakeyName()] = angular.toJson($scope.statBlock);
+	};
+
+    $scope.generateExport = function () {
+		$scope.exportUri = 'data:application/json,' +  angular.toJson($scope.statBlock);
+	};
 
 });
