@@ -42,6 +42,7 @@
 
 <body ng-app="showdownTroopBuilder" ng-controller="mainController" role="document">
 
+<!-- Main View -->
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -323,9 +324,6 @@
     </div>
 </div>
 
-</body>
-</html>
-
 
 <!-- Print Modal -->
 <div class="modal fade" id="printModal" tabindex="-1" role="dialog">
@@ -556,32 +554,5 @@
 </div>
 
 
-<style>
-
-    @media print {
-        body * {
-            visibility: hidden;
-        }
-
-        img * {
-            visibility: hidden;
-            display: none;
-        }
-
-        #printModal * {
-            visibility: visible;
-        }
-
-        .modal{
-            position: absolute;
-            left: 0;
-            top: 0;
-            margin: 0;
-            padding: 0;
-            min-height:550px;
-        }
-
-    }
-
-</style>
-
+</body>
+</html>
