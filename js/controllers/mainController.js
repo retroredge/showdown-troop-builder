@@ -164,6 +164,7 @@ app.controller('mainController', function($scope) {
     ];
 
     $scope.exportUri = '';
+    $scope.unitListing = [];
 
     // Reference Data
     $scope.edges = EDGES;
@@ -187,6 +188,23 @@ app.controller('mainController', function($scope) {
 
     $scope.persist = function () {
 		localStorage[$scope.statBlock.datakeyName()] = angular.toJson($scope.statBlock);
+	};
+
+    $scope.listPersistent = function () {
+        //Warning: do not make this a source of an ng-repeat directly. Since it is "dynamic", Angular will helpfully rerere(etc)-evaluate
+        var unitList = [];
+        for (var i = 0; i < localStorage.length; i++) {
+			if (localStorage.key(i).match(/^ShowdownTroopBuilder\.Unit\./i)) {
+				var unitStatBlock = angular.fromJson(localStorage.getItem(localStorage.key(i)));
+				unitList.push({name:unitStatBlock.name,datakeyName:localStorage.key(i)});
+			}
+        }
+        return unitList;
+	};
+
+    $scope.loadUnit = function (datakeyName) {
+		var unitStatBlock = angular.fromJson(localStorage.getItem(datakeyName));
+		unitStatBlock && Object.assign($scope.statBlock, unitStatBlock); 
 	};
 
     $scope.generateExport = function () {

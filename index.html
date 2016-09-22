@@ -54,11 +54,12 @@
                 <li><a href=#" data-toggle="modal" data-target="#aboutModal">About</a></li>
                 <li><a href=#" data-toggle="modal" data-target="#printModal">Print</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-click="generateExport()">Unit<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-click="generateExport(); unitListing = listPersistent();">Unit<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a ng-href="{{exportUri}}" target="_blank" ng-attr-download="{{ statBlock.datakeyName()+'.json' }}">Export to JSON</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#" ng-click="persist()" title="in browser localStorage">Save</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#loadunitModal"  title="from browser localStorage">Load...</a></li>
                     </ul>
                  </li>
             </ul>
@@ -329,6 +330,28 @@
             Built-in Bootstrap Glyphicons courtesy of <a href="http://glyphicons.com/">Glyphicons</a>.
         </div>
         <div class="col-md-1"></div>
+    </div>
+</div>
+
+
+<!-- Load Unit Modal -->
+<div class="modal fade" id="loadunitModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Load locally saved units</h4>
+            </div>
+            <div class="modal-body">
+                <ul>
+				    <li ng-repeat="retrievedUnit in unitListing"><a href="#" ng-click="loadUnit(retrievedUnit.datakeyName)">{{retrievedUnit.name}}</a></li>
+                </ul>
+            <div class="modal-footer">
+                <div class="pull-right hidden-print">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 
