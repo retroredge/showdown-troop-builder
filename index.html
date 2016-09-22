@@ -333,7 +333,10 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4>Name: {{ statBlock.name }} {{ statBlock.wildCard ? '(WC)' : '' }}</h4>
+                <h4>Name: {{ statBlock.name }} 
+                  <span  ng-show="statBlock.wildCard" ng-class="'glyphicon glyphicon-' + this.wcGlyphiconSet[this.statBlock.wildCardIconIndex]" aria-hidden="true" id="wc-glyphicon-print"> </span>
+                </h4>
+
             </div>
             <div class="modal-body">
 
