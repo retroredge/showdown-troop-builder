@@ -4,6 +4,14 @@
 	margin-top: .25em;
 }
 
+@media (min-width: 480px) {
+	#wc-glyphicon {
+		display: block;
+		margin-left: .75em;
+	}
+}
+
+
 @media print {
     body * {
         visibility: hidden;
