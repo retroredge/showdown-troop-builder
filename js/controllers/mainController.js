@@ -9,7 +9,7 @@ app.controller('mainController', function($scope) {
         strength: { name: 'Strength', value: '6'},
         vigor: { name: 'Vigor', value: '6'},
 
-        attributes: [
+        skills: [
             {name: 'Arcane', value: ''},
             {name: 'Boating', value: ''},
             {name: 'Climbing', value: ''},
@@ -35,8 +35,8 @@ app.controller('mainController', function($scope) {
         },
 
         parry: function() {
-            var fightingAttributeIndex = 4;
-            return (this.attributes[fightingAttributeIndex].value / 2) + 2 +
+            var fightingSkillIndex = 4;
+            return (this.skills[fightingSkillIndex].value / 2) + 2 +
                     this.abilityAdditions(this.edges, 'parry');
         },
 
@@ -82,7 +82,7 @@ app.controller('mainController', function($scope) {
                      (this.strengthBonus) +
                      (((this.vigor.value / 2) - 1) * 3) +
                      (this.pace - 6) +
-                     this.costOfAttributes() +
+                     this.costOfSkills() +
                      this.costOf(this.edges) +
                      this.costOf(this.specialAbilities) +
                      this.costOf(this.miscAbilities) +
@@ -118,10 +118,10 @@ app.controller('mainController', function($scope) {
             return sum;
         },
 
-        costOfAttributes: function() {
+        costOfSkills: function() {
             var first = true;
             var sum = 0;
-            this.attributes.forEach(function(itemString) {
+            this.skills.forEach(function(itemString) {
               var item = angular.fromJson(itemString);
               if (item.value != "") {
                   if (first) {
