@@ -3,6 +3,7 @@ app.controller('mainController', function($scope) {
     $scope.statBlock = {
         name: '',
         wildCard: false,
+        wildCardIconIndex: 0,
         agility: { name: 'Agility', value: '6'},
         smarts: { name: 'Smarts', value: '6'},
         spirit: { name: 'Spirit', value: '6'},
@@ -150,6 +151,12 @@ app.controller('mainController', function($scope) {
 
     };
 
+    $scope.wcGlyphiconSet = [
+      'asterisk','plus','cloud','heart','star','star-empty','th','remove','off','cog','flag','book','bookmark','tint','move','plus-sign','remove-sign','screenshot','remove-circle','leaf','fire','eye-open','plane','bell','certificate','wrench','fullscreen','heart-empty','link','unchecked','flash','record','send','tower'
+		/* Apparently not available in currently utilzed version of Boostrap:
+		 ,'conifer','cd','alert','king','queen','pawn','bishop','knight','apple','hourglass','grain','triangle-top' */
+    ];
+
     // Reference Data
     $scope.edges = EDGES;
     $scope.specialAbilities = SPECIAL_ABILITIES;
@@ -162,6 +169,12 @@ app.controller('mainController', function($scope) {
       return function( item ) {
         return item.value != '';
       };
+    };
+
+      
+    $scope.wildcardIconCycle = function() {
+      //Just cycle to the next icon. The icons are the "built-in" Bootstrap icons, selected for proper flavor.
+        this.statBlock.wildCardIconIndex = (this.statBlock.wildCardIconIndex + 1) % this.wcGlyphiconSet.length;
     };
 
 });
