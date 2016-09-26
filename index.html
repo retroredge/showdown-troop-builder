@@ -11,6 +11,7 @@
     <title>Showdown Troop Builder</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/showdownTroopBuilder.css" rel="stylesheet">
 
     <!--<script src="https://code.jquery.com/jquery.js"></script>-->
     <script src="js/shared/jquery-1.11.1.min.js"></script>
@@ -82,6 +83,7 @@
                                     <div class="form-group">
                                         <label>Wild Card:</label>
                                         <input type="checkbox" value="false" ng-model="statBlock.wildCard" id="wc">
+                                        <span  ng-show="statBlock.wildCard" ng-class="'glyphicon glyphicon-' + this.wcGlyphiconSet[this.statBlock.wildCardIconIndex]" aria-hidden="true" ng-click="wildcardIconCycle()" id="wc-glyphicon"> </span>
                                     </div>
                                 </div>
                             </div>
@@ -315,6 +317,8 @@
             This game references the Savage Worlds game system, available from Pinnacle Entertainment Group at www.peginc.com.
             Savage Worlds and all associated logos and trademarks are copyrights of Pinnacle Entertainment Group. Used with permission.
             Pinnacle makes no representation or warranty as to the quality, viability, or suitability for purpose of this product.
+            
+            Built-in Bootstrap Glyphicons courtesy of <a href="http://glyphicons.com/">Glyphicons</a>.
         </div>
         <div class="col-md-1"></div>
     </div>
@@ -329,7 +333,10 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4>Name: {{ statBlock.name }} {{ statBlock.wildCard ? '(WC)' : '' }}</h4>
+                <h4>Name: {{ statBlock.name }} 
+                  <span  ng-show="statBlock.wildCard" ng-class="'glyphicon glyphicon-' + this.wcGlyphiconSet[this.statBlock.wildCardIconIndex]" aria-hidden="true" id="wc-glyphicon-print"> </span>
+                </h4>
+
             </div>
             <div class="modal-body">
 
