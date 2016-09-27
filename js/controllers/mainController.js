@@ -3,13 +3,14 @@ app.controller('mainController', function($scope) {
     $scope.statBlock = {
         name: '',
         wildCard: false,
+        wildCardIconIndex: 0,
         agility: { name: 'Agility', value: '6'},
         smarts: { name: 'Smarts', value: '6'},
         spirit: { name: 'Spirit', value: '6'},
         strength: { name: 'Strength', value: '6'},
         vigor: { name: 'Vigor', value: '6'},
 
-        attributes: [
+        skills: [
             {name: 'Arcane', value: ''},
             {name: 'Boating', value: ''},
             {name: 'Climbing', value: ''},
@@ -35,8 +36,8 @@ app.controller('mainController', function($scope) {
         },
 
         parry: function() {
-            var fightingAttributeIndex = 4;
-            return (this.attributes[fightingAttributeIndex].value / 2) + 2 +
+            var fightingSkillIndex = 4;
+            return (this.skills[fightingSkillIndex].value / 2) + 2 +
                     this.abilityAdditions(this.edges, 'parry');
         },
 
@@ -82,7 +83,7 @@ app.controller('mainController', function($scope) {
                      (this.strengthBonus) +
                      (((this.vigor.value / 2) - 1) * 3) +
                      (this.pace - 6) +
-                     this.costOfAttributes() +
+                     this.costOfSkills() +
                      this.costOf(this.edges) +
                      this.costOf(this.specialAbilities) +
                      this.costOf(this.miscAbilities) +
@@ -118,10 +119,10 @@ app.controller('mainController', function($scope) {
             return sum;
         },
 
-        costOfAttributes: function() {
+        costOfSkills: function() {
             var first = true;
             var sum = 0;
-            this.attributes.forEach(function(itemString) {
+            this.skills.forEach(function(itemString) {
               var item = angular.fromJson(itemString);
               if (item.value != "") {
                   if (first) {
@@ -150,6 +151,12 @@ app.controller('mainController', function($scope) {
 
     };
 
+    $scope.wcGlyphiconSet = [
+      'asterisk','plus','cloud','heart','star','star-empty','th','remove','off','cog','flag','book','bookmark','tint','move','plus-sign','remove-sign','screenshot','remove-circle','leaf','fire','eye-open','plane','bell','certificate','wrench','fullscreen','heart-empty','link','unchecked','flash','record','send','tower'
+		/* Apparently not available in currently utilzed version of Boostrap:
+		 ,'conifer','cd','alert','king','queen','pawn','bishop','knight','apple','hourglass','grain','triangle-top' */
+    ];
+
     // Reference Data
     $scope.edges = EDGES;
     $scope.specialAbilities = SPECIAL_ABILITIES;
@@ -162,6 +169,12 @@ app.controller('mainController', function($scope) {
       return function( item ) {
         return item.value != '';
       };
+    };
+
+      
+    $scope.wildcardIconCycle = function() {
+      //Just cycle to the next icon. The icons are the "built-in" Bootstrap icons, selected for proper flavor.
+        this.statBlock.wildCardIconIndex = (this.statBlock.wildCardIconIndex + 1) % this.wcGlyphiconSet.length;
     };
 
 });
