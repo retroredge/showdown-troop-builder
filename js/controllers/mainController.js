@@ -151,6 +151,8 @@ app.controller('mainController', function($scope) {
 
 
         datakeyName: function() {
+            //This defines the keynames as they appear in localStorage, so you only have to change it 
+            //in one place. Note that changing the prefix would make stored characters "disappear".
             //Might be used in multiple places. At least localStorage keys and download filename hints.
             return 'ShowdownTroopBuilder.Unit.' + (this.name ? this.name.replace(/\W/g,'') : 'Unnamed');
         }
@@ -191,7 +193,7 @@ app.controller('mainController', function($scope) {
 	};
 
     $scope.listPersistent = function () {
-        //Warning: do not make this a source of an ng-repeat directly. Since it is "dynamic", Angular will helpfully rerere(etc)-evaluate
+        //Warning: do not make this a source of an ng-repeat binding directly. Since it is "dynamic", Angular will helpfully rerere(etc)-evaluate
         var unitList = [];
         for (var i = 0; i < localStorage.length; i++) {
 			if (localStorage.key(i).match(/^ShowdownTroopBuilder\.Unit\./i)) {

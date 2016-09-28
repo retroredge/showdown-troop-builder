@@ -3,6 +3,6 @@ var app = angular.module('showdownTroopBuilder', []); // Empty array is dependan
 app.config(['$logProvider','$compileProvider', function($logProvider,$compileProvider) { 
   $logProvider.debugEnabled(true);
 
-  //To prefent "unsafe" prefix on the generate JSON export link
+  //To prevent angular from inserting "unsafe" prefix on the generate JSON export link
   $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|data):/);
 }]);

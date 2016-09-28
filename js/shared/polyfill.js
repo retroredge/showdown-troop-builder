@@ -1,4 +1,5 @@
-//IE lacks support for this function. 
+//Object.assign(targetObject)
+//IE lacks support for this apparently standard method
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Browser_compatibility
 if (typeof Object.assign != 'function') {
   (function () {
