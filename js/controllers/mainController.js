@@ -147,6 +147,14 @@ app.controller('mainController', function($scope) {
         getObjectFromJsonString: function(itemString) {
             var item = angular.fromJson(itemString);
             return item;
+        },
+
+
+        datakeyName: function() {
+            //This defines the keynames as they appear in localStorage, so you only have to change it 
+            //in one place. Note that changing the prefix would make stored characters "disappear".
+            //Might be used in multiple places. At least localStorage keys and download filename hints.
+            return 'ShowdownTroopBuilder.Unit.' + (this.name ? this.name.replace(/\W/g,'') : 'Unnamed');
         }
 
     };
@@ -156,6 +164,9 @@ app.controller('mainController', function($scope) {
 		/* Apparently not available in currently utilzed version of Boostrap:
 		 ,'conifer','cd','alert','king','queen','pawn','bishop','knight','apple','hourglass','grain','triangle-top' */
     ];
+
+    $scope.exportUri = '';
+    $scope.unitListing = [];
 
     // Reference Data
     $scope.edges = EDGES;
@@ -176,5 +187,30 @@ app.controller('mainController', function($scope) {
       //Just cycle to the next icon. The icons are the "built-in" Bootstrap icons, selected for proper flavor.
         this.statBlock.wildCardIconIndex = (this.statBlock.wildCardIconIndex + 1) % this.wcGlyphiconSet.length;
     };
+
+    $scope.persist = function () {
+		localStorage[$scope.statBlock.datakeyName()] = angular.toJson($scope.statBlock);
+	};
+
+    $scope.listPersistent = function () {
+        //Warning: do not make this a source of an ng-repeat binding directly. Since it is "dynamic", Angular will helpfully rerere(etc)-evaluate
+        var unitList = [];
+        for (var i = 0; i < localStorage.length; i++) {
+			if (localStorage.key(i).match(/^ShowdownTroopBuilder\.Unit\./i)) {
+				var unitStatBlock = angular.fromJson(localStorage.getItem(localStorage.key(i)));
+				unitList.push({name:unitStatBlock.name,datakeyName:localStorage.key(i)});
+			}
+        }
+        return unitList;
+	};
+
+    $scope.loadUnit = function (datakeyName) {
+		var unitStatBlock = angular.fromJson(localStorage.getItem(datakeyName));
+		unitStatBlock && Object.assign($scope.statBlock, unitStatBlock); 
+	};
+
+    $scope.generateExport = function () {
+		$scope.exportUri = 'data:application/json,' +  angular.toJson($scope.statBlock);
+	};
 
 });
