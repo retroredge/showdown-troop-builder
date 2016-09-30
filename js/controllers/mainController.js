@@ -182,6 +182,9 @@ app.controller('mainController', function($scope) {
       };
     };
 
+    //Apparently even a shallow watch on arrays is not the default. Nothing additional to do (hence the empty function body).
+    //We just want Angular to watch it so that we get the dynamic binding reacting automagically for unitListing & modal too.
+    $scope.$watchCollection('unitListing',function(newList,oldList){   }); 
       
     $scope.wildcardIconCycle = function() {
       //Just cycle to the next icon. The icons are the "built-in" Bootstrap icons, selected for proper flavor.
@@ -205,8 +208,17 @@ app.controller('mainController', function($scope) {
 	};
 
     $scope.loadUnit = function (datakeyName) {
-		var unitStatBlock = angular.fromJson(localStorage.getItem(datakeyName));
-		unitStatBlock && Object.assign($scope.statBlock, unitStatBlock); 
+        var unitStatBlock = angular.fromJson(localStorage.getItem(datakeyName));
+        unitStatBlock && Object.assign($scope.statBlock, unitStatBlock); 
+	};
+
+    $scope.deleteUnit = function (datakeyName) {
+        localStorage.removeItem(datakeyName);
+		for(var i = 0; i < $scope.unitListing.length; i++) {
+            if ($scope.unitListing[i].datakeyName == datakeyName) {
+               $scope.unitListing.splice(i,1);
+            }
+        }
 	};
 
     $scope.generateExport = function () {

@@ -345,7 +345,9 @@
             </div>
             <div class="modal-body">
                 <ul>
-				    <li ng-repeat="retrievedUnit in unitListing"><a href="#" ng-click="loadUnit(retrievedUnit.datakeyName)">{{retrievedUnit.name}}</a></li>
+				    <li ng-repeat="retrievedUnit in unitListing"><a href="#" ng-click="loadUnit(retrievedUnit.datakeyName)">{{retrievedUnit.name}}</a>
+                        <span class="deleteMinibutton badge glyphicon glyphicon-remove" aria-hidden="true" ng-click="deleteUnit(retrievedUnit.datakeyName)" > </span>
+				    </li>
                 </ul>
             <div class="modal-footer">
                 <div class="pull-right hidden-print">

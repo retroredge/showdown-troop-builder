@@ -4,6 +4,16 @@
 	margin-top: .25em;
 }
 
+#loadunitModal .modal-dialog {
+	max-width: 30em;
+}
+
+#loadunitModal .deleteMinibutton {
+    right: 2em;
+	float: right;
+	margin-left: 2em;
+}
+
 @media (min-width: 480px) {
 	#wc-glyphicon {
 		display: block;
