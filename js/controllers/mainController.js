@@ -222,17 +222,17 @@ app.controller('mainController', function($scope) {
 	};
 
     $scope.generateExport = function () {
-		$scope.exportUri = 'data:application/json,' +  angular.toJson($scope.statBlock);
+		$scope.exportUri = 'data:application/json,' +  angular.toJson($scope.statBlock).replace(/ /g,'%20');
 	};
 
     $scope.importUnit = function (pickerEvent) {  //Meant to be bound to a file input control change event.
-        console.log(pickerEvent.target.files[0]);
         var fImportFile = new FileReader();
         if (!fImportFile) {
             console.log("Sorry, cannot detect the needed FileReader object. Disabling import options.");
             ///TODO: disable the menu entry.
         } else {
             ///TODO: filetype checks
+            console.log('Loading file ' + pickerEvent.target.files[0].name);
             fImportFile.onload = function(evt){
                 ///TODO: sanity check (regex, length)
                 var unitStatBlock = angular.fromJson(evt.target.result);
