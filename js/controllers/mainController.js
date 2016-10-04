@@ -228,11 +228,11 @@ app.controller('mainController', function($scope) {
     $scope.importUnit = function (pickerEvent) {  //Meant to be bound to a file input control change event.
         var fImportFile = new FileReader();
         if (!fImportFile) {
-            console.log("Sorry, cannot detect the needed FileReader object. Disabling import options.");
+            log("Sorry, cannot detect the needed FileReader object. Disabling import options.");
             ///TODO: disable the menu entry.
         } else {
             ///TODO: filetype checks
-            console.log('Loading file ' + pickerEvent.target.files[0].name);
+            log('Loading file ' + pickerEvent.target.files[0].name);
             fImportFile.onload = function(evt){
                 ///TODO: sanity check (regex, length)
                 var unitStatBlock = angular.fromJson(evt.target.result);
