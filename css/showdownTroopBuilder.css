@@ -1,3 +1,25 @@
+#fileImportUnit label {
+/* Emulate .dropdown-menu>li>a { 
+   This is based on a particular template in an element directive,
+   so if that changes, this must change accordingly.
+   //TODO: probably should convert to using new special classes instead of ID.
+*/
+    cursor: pointer;
+    display: block;
+    padding: 3px 20px;
+    padding-top: 3px;
+    padding-right: 20px;
+    padding-bottom: 3px;
+    padding-left: 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+#fileImportUnit > input {
+	display:none;
+}
 
 #wc-glyphicon {
 	margin-left: 1.25em;

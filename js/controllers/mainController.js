@@ -187,7 +187,7 @@ app.controller('mainController', function($scope) {
     $scope.$watchCollection('unitListing',function(newList,oldList){   }); 
       
     $scope.wildcardIconCycle = function() {
-      //Just cycle to the next icon. The icons are the "built-in" Bootstrap icons, selected for proper flavor.
+        //Just cycle to the next icon. The icons are the "built-in" Bootstrap icons, selected for proper flavor.
         this.statBlock.wildCardIconIndex = (this.statBlock.wildCardIconIndex + 1) % this.wcGlyphiconSet.length;
     };
 
@@ -224,5 +224,25 @@ app.controller('mainController', function($scope) {
     $scope.generateExport = function () {
 		$scope.exportUri = 'data:application/json,' +  angular.toJson($scope.statBlock);
 	};
+
+    $scope.importUnit = function (pickerEvent) {  //Meant to be bound to a file input control change event.
+        console.log(pickerEvent.target.files[0]);
+        var fImportFile = new FileReader();
+        if (!fImportFile) {
+            console.log("Sorry, cannot detect the needed FileReader object. Disabling import options.");
+            ///TODO: disable the menu entry.
+        } else {
+            ///TODO: filetype checks
+            fImportFile.onload = function(evt){
+                ///TODO: sanity check (regex, length)
+                var unitStatBlock = angular.fromJson(evt.target.result);
+                ///TODO: more sanity checks on the instantiated object?
+                unitStatBlock && Object.assign($scope.statBlock, unitStatBlock); 
+                //Since FileAPI is sufficiently nonstandard, and thus not very included in Angular core, we have some manual duties here.
+                $scope.$apply();  //Just to get view to refresh after "non-standard" activity.
+            };
+            fImportFile.readAsText(pickerEvent.target.files[0]);
+        }
+    };
 
 });
