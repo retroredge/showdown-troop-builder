@@ -22,6 +22,7 @@
     <script src="js/app.js"/></script>
     <script src="js/controllers/mainController.js"/></script>
     <script src="js/directives/diePicker.js"/></script>
+    <script src="js/directives/filePicker.js"/></script>
     <script src="js/edges.js"></script>
     <script src="js/specialAbilities.js"></script>
     <script src="js/armor.js"></script>
@@ -58,6 +59,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-click="generateExport(); unitListing = listPersistent();">Unit<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a ng-href="{{exportUri}}" target="_blank" ng-attr-download="{{ statBlock.datakeyName()+'.json' }}">Export to JSON</a></li>
+                        <li><file-picker id="fileImportUnit" label-text="Import from JSON" on-change-handler="importUnit" extension-filter=".json"></file-picker></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#" ng-click="persist()" title="in browser localStorage">Save</a></li>
                         <li><a href="#" data-toggle="modal" data-target="#loadunitModal"  title="from browser localStorage">Load...</a></li>
@@ -345,7 +347,9 @@
             </div>
             <div class="modal-body">
                 <ul>
-				    <li ng-repeat="retrievedUnit in unitListing"><a href="#" ng-click="loadUnit(retrievedUnit.datakeyName)">{{retrievedUnit.name}}</a></li>
+				    <li ng-repeat="retrievedUnit in unitListing"><a href="#" ng-click="loadUnit(retrievedUnit.datakeyName)">{{retrievedUnit.name}}</a>
+                        <span class="deleteMinibutton badge glyphicon glyphicon-remove" aria-hidden="true" ng-click="deleteUnit(retrievedUnit.datakeyName)" > </span>
+				    </li>
                 </ul>
             <div class="modal-footer">
                 <div class="pull-right hidden-print">
@@ -572,7 +576,7 @@
                 <h4>Known Issues</h4>
                 <p>
                     <ul>
-                        <li>Print generates an extra blank page with the logo at the bottom</li>
+                        <li>Cannot unselect a Skill once selected</li>
                     </ul>
                 </p>
             </div>
