@@ -15,7 +15,10 @@
 
     <script src="js/shared/jquery-1.11.1.min.js"></script>
     <script src="js/shared/bootstrap.min.js"></script>
-    <!--<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>-->
+    <!--
+	<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src= "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script> thinking about an upgrade, regression and performance tests should happen first.
+-->
     <script src="js/shared/angular.min.js"></script>
     <script src="js/shared/polyfill.js"></script>
 
@@ -153,10 +156,10 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion-left" href="#collapseStats">Stats</a>
+                                <a data-toggle="collapse" data-parent="#accordion-left" href="#collapseAttributes">Attributes</a>
                             </h3>
                         </div>
-                        <div id="collapseStats" class="panel-collapse collapse in">
+                        <div id="collapseAttributes" class="panel-collapse collapse in">
                             <div class="panel-body">
                             <div class="form-group">
                                 <die-picker stat="statBlock.agility.value"
@@ -565,9 +568,10 @@
                 <p>
                     <ul>
                         <li>Print as a PDF</li>
-                        <li>Export / import data</li>
                         <li>Checkboxes in lists instead of basic multi-select list</li>
+                        <li>Hindrances</li>
                         <li>Multi-tabbed UI </li>
+                        <li>Expanded export / import data, including IE support</li>
                     </ul>
                 </p>
                 <h4>Contact</h4>
@@ -577,6 +581,7 @@
                 <p>
                     <ul>
                         <li>Cannot unselect a Skill once selected</li>
+                        <li>Export does not work on IE and iOS</li>
                     </ul>
                 </p>
             </div>

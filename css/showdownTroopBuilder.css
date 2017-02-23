@@ -61,6 +61,19 @@
     #printModal * {
         visibility: visible;
     }
+	#printModal div.modal-header {
+		padding: .33em;
+	}
+	#printModal div.modal-header h4 {
+		font-size: 1.5em;
+		margin: 0; padding: 0;
+	}
+	#printModal div.modal-body th {
+		padding: .30em;
+	}
+	#printModal div.modal-body td {
+		padding: .25em;
+	}
 
     .modal{
         position: absolute;
