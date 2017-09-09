@@ -25,6 +25,7 @@
     <script src="js/app.js"/></script>
     <script src="js/controllers/mainController.js"/></script>
     <script src="js/directives/diePicker.js"/></script>
+    <script src="js/directives/optionalDiePicker.js"/></script>
     <script src="js/directives/filePicker.js"/></script>
     <script src="js/edges.js"></script>
     <script src="js/specialAbilities.js"></script>
@@ -186,7 +187,7 @@
                         <div id="collapseSkills" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <div class="form-group">
-                                    <die-picker ng-repeat="skill in statBlock.skills" stat="skill.value"
+                                    <optional-die-picker ng-repeat="skill in statBlock.skills" stat="skill.value"
                                                 statname="skill.name"></die-picker>
                                 </div>
                             </div>
