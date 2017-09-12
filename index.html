@@ -17,14 +17,15 @@
     <script src="js/shared/bootstrap.min.js"></script>
     <!--
 	<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-    <script src= "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script> thinking about an upgrade, regression and performance tests should happen first.
--->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+	-->
     <script src="js/shared/angular.min.js"></script>
     <script src="js/shared/polyfill.js"></script>
 
     <script src="js/app.js"/></script>
     <script src="js/controllers/mainController.js"/></script>
     <script src="js/directives/diePicker.js"/></script>
+    <script src="js/directives/optionalDiePicker.js"/></script>
     <script src="js/directives/filePicker.js"/></script>
     <script src="js/edges.js"></script>
     <script src="js/specialAbilities.js"></script>
@@ -186,7 +187,7 @@
                         <div id="collapseSkills" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <div class="form-group">
-                                    <die-picker ng-repeat="skill in statBlock.skills" stat="skill.value"
+                                    <optional-die-picker ng-repeat="skill in statBlock.skills" stat="skill.value"
                                                 statname="skill.name"></die-picker>
                                 </div>
                             </div>

@@ -17,14 +17,15 @@ Tasks
 -----
 - Render unit card as printable PDF
 - Add hindrances list
-- Export feature
+- Expanded export / import data, including IE support
 
 
 UI Improvements
 ----
 - Multi-select lists with check boxes
-- Button(s) to reset a skills
+- Button(s) to reset (i.e., remove) a selected skill
 - Multiple tabs for the various lists
+
 
 Local testing with node http server (OSX)
 ----
@@ -36,6 +37,15 @@ http-server
 ```
 
 Then go to [http://0.0.0.0:8080/]()
+
+There is also a [Protractor](http://www.protractortest.org/) test spec in the test subdirectory.
+```
+npm install -g protractor
+webdriver-manager update
+webdriver-manager start
+protractor test/protractor/conf.js
+```
+
 
 Disclaimer
 ====
