@@ -25,6 +25,7 @@ UI Improvements
 - Multi-select lists with check boxes
 - Button(s) to reset (i.e., remove) a selected skill
 - Multiple tabs for the various lists
+- Some hindrances and abilities should affect more than one stat, but currently only one affect is captured.  
 
 
 Local testing with node http server (OSX)
