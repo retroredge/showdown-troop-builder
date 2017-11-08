@@ -15,7 +15,6 @@ describe('Showdown Troop Builder', function() {
 	});
   });
 
-  //Wildcard checkbox shows glyph 
   it('should have a checkbox called "Wild Card" which shows a glyphicon when checked', function() {
 	element(by.id('wc')).click();
 	expect($('[ng-show="statBlock.wildCard"]').isDisplayed()).toBeTruthy();
@@ -31,18 +30,63 @@ describe('Showdown Troop Builder', function() {
 	expect(element(by.binding('statBlock.roundedCost()')).getText()).toBeGreaterThan('4 (18.00)','default of 4 should increase because wildcards are hardier and luckier.');
   });
 
-  it('should arrive at 33(163.00) cost for a Conan archetype', function() {
+  it('should arrive at 37(163.00) cost for a Conan archetype', function() {
 	element(by.model('statBlock.name')).sendKeys('Conan the Barbarian');
 	element(by.id('wc')).click();
 	//element(by.binding('statBlock.spirit.value')).click();
-	//StrengthOptionsRadiosinline
 	element(by.id('AgilityD8Radios')).click();
 	element(by.id('StrengthD10Radios')).click();
 	element(by.id('VigorD8Radios')).click();
-	//TODO: brawny, tough as nails, champion, mighty blow
-	//TODO: great sword
+
+	element.all(by.css("a[href='#collapseSkills']")).click();
+	element(by.id('FightingD10Radios')).click();
+	element(by.id('ThrowingD6Radios')).click();
+
+	//TODO: brawny, combat reflexes, tough as nails, hard to kill, mighty blow, nerves of steel
+	element.all(by.css("a[href='#collapseEdges']")).click();
+	element.all(by.repeater('edge in edges')).filter(function(edge){
+		return edge.getText().then(function(lbl){
+			return lbl==='Brawny';
+		});
+	}).get(0).click();
+	element.all(by.repeater('edge in edges')).filter(function(edge){
+		return edge.getText().then(function(lbl){
+			return lbl==='Combat Reflexes';
+		});
+	}).get(0).click();
+	element.all(by.repeater('edge in edges')).filter(function(edge){
+		return edge.getText().then(function(lbl){
+			return lbl==='Hard to Kill';
+		});
+	}).get(0).click();
+	element.all(by.repeater('edge in edges')).filter(function(edge){
+		return edge.getText().then(function(lbl){
+			return lbl==='Tough as Nails';
+		});
+	}).get(0).click();
+	element.all(by.repeater('edge in edges')).filter(function(edge){
+		return edge.getText().then(function(lbl){
+			return lbl==='Mighty Blow';
+		});
+	}).get(0).click();
+	element.all(by.repeater('edge in edges')).filter(function(edge){
+		return edge.getText().then(function(lbl){
+			return lbl==='Nerves of Steel';
+		});
+	}).get(0).click();
+		
+	element.all(by.css("a[href='#collapseHandWeapons']")).click();
+	element.all(by.repeater('handWeapon in handWeapons')).filter(function(weapon){
+		return weapon.getText().then(function(lbl){
+			return lbl.substr(0,11) == 'Great Sword';
+		});
+	}).get(0).click();
+
 	// not a numerical matcher// expect(element(by.binding('statBlock.roundedCost()')).getText()).toBeGreaterThan('1004 (18.00)');
-	expect(element(by.binding('statBlock.roundedCost()')).getText()).toMatch(/[0-9][0-9].*/);;
+	element(by.binding('statBlock.roundedCost()')).getText().then(function(text){
+		console.log('Cost after Conanification: '+text);
+	});
+	expect(element(by.binding('statBlock.roundedCost()')).getText()).toMatch(/37/);
   });
 
 	//Select a skill, points go up, clear it off, they go back down.
