@@ -15,12 +15,20 @@ describe('Showdown Troop Builder', function() {
 	});
   });
 
-	//Wildcard checkbox shows glyph and adjusts cost
+	//Wildcard checkbox shows glyph 
   it('should have a checkbox called "Wild Card" which shows a glyphicon when checked', function() {
     element(by.id('wc')).click();
     expect($('[ng-show=statBlock.wildCard]').isDisplayed()).toBeTruthy();
   });
 
+	//Wildcard checkbox adjusts cost
+  it('should have a checkbox called "Wild Card" which adjusts cost when checked', function() {
+    element(by.id('wc')).click();
+    expect($('[ng-show=statBlock.roundedCost()]').toEqual('4 (18.00)');
+  });
+
+	//Select a skill, points go up, clear it off, they go back down.
+	//Select same skill, points go back up and clear it off, they go back down.
 
 	//maxed out cost is correct
 	//min'd out cost is correct
@@ -32,5 +40,7 @@ describe('Showdown Troop Builder', function() {
 	//Delete
 	
     //print
+	////Check name matches, 
+	////check all stat boxes filled.
 
 });

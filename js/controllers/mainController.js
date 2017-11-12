@@ -85,6 +85,7 @@ app.controller('mainController', function($scope) {
                      (this.pace - 6) +
                      this.costOfSkills() +
                      this.costOf(this.edges) +
+                     this.costOf(this.hindrances) +
                      this.costOf(this.specialAbilities) +
                      this.costOf(this.miscAbilities) +
                      (this.costOf(this.armors) * 5) +
@@ -138,6 +139,7 @@ app.controller('mainController', function($scope) {
         },
 
         edges : [],
+        hindrances : [],
         specialAbilities : [],
         miscAbilities : [],
         armors: [],
@@ -170,6 +172,7 @@ app.controller('mainController', function($scope) {
 
     // Reference Data
     $scope.edges = EDGES;
+    $scope.hindrances = HINDRANCES;
     $scope.specialAbilities = SPECIAL_ABILITIES;
     $scope.armors = ARMORS;
     $scope.handWeapons = HAND_WEAPONS;

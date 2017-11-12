@@ -28,6 +28,7 @@
     <script src="js/directives/optionalDiePicker.js"/></script>
     <script src="js/directives/filePicker.js"/></script>
     <script src="js/edges.js"></script>
+    <script src="js/hindrances.js"></script>
     <script src="js/specialAbilities.js"></script>
     <script src="js/armor.js"></script>
     <script src="js/handWeapons.js"></script>
@@ -204,8 +205,7 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseEdges">Edges /
-                                    Abilities</a>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseEdges">Edges / Abilities</a>
                             </h3>
                         </div>
                         <div id="collapseEdges" class="panel-collapse collapse">
@@ -215,6 +215,25 @@
                                         <option ng-repeat="edge in edges"
                                                 title="{{ edge.desc }}"
                                                 value="{{ edge }}" ng-bind="edge.name">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseHindrances">Hindrances</a>
+                            </h3>
+                        </div>
+                        <div id="collapseHindrances" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <select multiple class="form-control" size="27" ng-model="statBlock.hindrances">
+                                        <option ng-repeat="hindrance in hindrances"
+                                                title="{{ hindrance.desc }}"
+                                                value="{{ hindrance }}" ng-bind="hindrance.name">
                                         </option>
                                     </select>
                                 </div>
@@ -429,13 +448,18 @@
                             <table class="table table-condense table-striped table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>Edges / Special Abilities</th>
+                                    <th>Edges / Abilities / Special</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr ng-repeat="edge in statBlock.edges">
                                     <td>
                                         {{ statBlock.getObjectFromJsonString(edge).name }}: {{ statBlock.getObjectFromJsonString(edge).desc }}
+                                    </td>
+                                </tr>
+                                <tr ng-repeat="hindrance in statBlock.hindrances">
+                                    <td>
+                                        {{ statBlock.getObjectFromJsonString(hindrance).name }}: {{ statBlock.getObjectFromJsonString(hindrance).desc }}
                                     </td>
                                 </tr>
                                 <tr ng-repeat="special in statBlock.specialAbilities">
@@ -581,8 +605,8 @@
                 <h4>Known Issues</h4>
                 <p>
                     <ul>
-                        <li>Cannot unselect a Skill once selected</li>
-                        <li>Export does not work on IE and iOS</li>
+                        <li>Some abilities should affect more than one trait/stat, yet do not.</li>
+                        <li>Export does not work on IE and iOS.</li>
                     </ul>
                 </p>
             </div>
