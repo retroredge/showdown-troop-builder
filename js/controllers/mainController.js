@@ -32,12 +32,14 @@ app.controller('mainController', function($scope) {
         paceTotal: function() {
             return this.pace +
                    this.abilityAdditions(this.edges, 'pace') +
+                   this.abilityAdditions(this.hindrances, 'pace') +
                    this.abilityAdditions(this.specialAbilities, 'pace');
         },
 
         parry: function() {
             var fightingSkillIndex = 4;
             return (this.skills[fightingSkillIndex].value / 2) + 2 +
+                    this.abilityAdditions(this.hindrances, 'parry') +
                     this.abilityAdditions(this.edges, 'parry');
         },
 
@@ -48,6 +50,7 @@ app.controller('mainController', function($scope) {
                     this.armor() +
                     this.size +
                     this.abilityAdditions(this.edges, 'toughness') +
+                    this.abilityAdditions(this.hindrances, 'toughness') +
                     this.abilityAdditions(this.specialAbilities, 'toughness');
         },
 
