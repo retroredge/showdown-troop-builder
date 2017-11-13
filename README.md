@@ -41,7 +41,7 @@ Then go to [http://0.0.0.0:8080/]()
 
 There is also a [Protractor](http://www.protractortest.org/) test spec in the test subdirectory.
 ```
-npm install -g protractor
+npm install protractor -g
 webdriver-manager update
 webdriver-manager start
 protractor test/protractor/conf.js
