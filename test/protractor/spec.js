@@ -1,7 +1,8 @@
 // spec.js
 describe('Showdown Troop Builder', function() {
   beforeEach(function() {
-	browser.get('http://retroredge.github.io/showdown-troop-builder/');
+	browser.get('http://127.0.0.1:8080/');
+	//browser.get('http://retroredge.github.io/showdown-troop-builder/');
   });
 
   it('should have a title of "Showdown Troop Builder"', function() {
@@ -99,6 +100,7 @@ describe('Showdown Troop Builder', function() {
 	//Unit menu:
 		//element(by.model('statBlock.name')).sendKeys('Conan the Barbarian');
 	//Save
+		//confirm name shows up AND localstorage has a new entry
 	//Load
 	//Delete
 	
